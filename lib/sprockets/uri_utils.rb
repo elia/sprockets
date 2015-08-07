@@ -59,7 +59,7 @@ module Sprockets
     def join_file_uri(scheme, host, path, query)
       str = "#{scheme}://"
       str << host if host
-      path = "/#{path}" unless path.start_with?("/")
+      path = "/#{path}" unless path.start_with?('/'.freeze)
       str << URI::Generic::DEFAULT_PARSER.escape(path)
       str << "?#{query}" if query
       str

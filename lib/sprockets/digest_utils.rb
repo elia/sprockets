@@ -53,31 +53,31 @@ module Sprockets
         if klass == String
           digest << obj
         elsif klass == Symbol
-          digest << 'Symbol'
+          digest << 'Symbol'.freeze
           digest << obj.to_s
         elsif klass == Fixnum
-          digest << 'Fixnum'
+          digest << 'Fixnum'.freeze
           digest << obj.to_s
         elsif klass == Bignum
-          digest << 'Bignum'
+          digest << 'Bignum'.freeze
           digest << obj.to_s
         elsif klass == TrueClass
-          digest << 'TrueClass'
+          digest << 'TrueClass'.freeze
         elsif klass == FalseClass
-          digest << 'FalseClass'
+          digest << 'FalseClass'.freeze
         elsif klass == NilClass
           digest << 'NilClass'.freeze
         elsif klass == Array
-          digest << 'Array'
+          digest << 'Array'.freeze
           queue.concat(obj)
         elsif klass == Hash
-          digest << 'Hash'
+          digest << 'Hash'.freeze
           queue.concat(obj.sort)
         elsif klass == Set
-          digest << 'Set'
+          digest << 'Set'.freeze
           queue.concat(obj.to_a)
         elsif klass == Encoding
-          digest << 'Encoding'
+          digest << 'Encoding'.freeze
           digest << obj.name
         else
           raise TypeError, "couldn't digest #{klass}"
@@ -93,7 +93,7 @@ module Sprockets
     #
     # Returns hex String.
     def pack_hexdigest(bin)
-      bin.unpack('H*').first
+      bin.unpack('H*'.freeze).first
     end
 
     # Internal: Unpack a hex encoded digest string into binary bytes.
@@ -102,7 +102,7 @@ module Sprockets
     #
     # Returns binary String.
     def unpack_hexdigest(hex)
-      [hex].pack('H*')
+      [hex].pack('H*'.freeze)
     end
 
     # Internal: Pack a binary digest to a base64 encoded string.
@@ -111,7 +111,7 @@ module Sprockets
     #
     # Returns base64 String.
     def pack_base64digest(bin)
-      [bin].pack('m0')
+      [bin].pack('m0'.freeze)
     end
 
     # Internal: Pack a binary digest to a urlsafe base64 encoded string.
